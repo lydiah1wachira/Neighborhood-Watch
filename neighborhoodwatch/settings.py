@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'registration',
-    'neighborhood',
+    'bootstrap5',
+    'neighborhood.apps.NeighborhoodConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
