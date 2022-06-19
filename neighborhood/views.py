@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse ,HttpResponseRedirect, Http404
 from .forms import NewUserForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login,authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -14,8 +15,11 @@ def register_request(request):
 			user = form.save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
-			return redirect("main:homepage")
+   
+			return redirect("login")
+
 		messages.error(request, "Unsuccessful registration. Invalid information.")
+  
 	form = NewUserForm()
 	return render (request, "registration/register.html", context={"register_form":form})
 
@@ -36,4 +40,9 @@ def login_request(request):
 		else:
 			messages.error(request,"Invalid username or password.")
 	form = AuthenticationForm()
-	return render(request=request, template_name="main/login.html", context={"login_form":form})
+	return render(request, "registration/login.html", context={"login_form":form})
+
+def index(request):
+    '''Index view function to display the index page and all of its data'''
+    
+    return render(request, 'index.html')
