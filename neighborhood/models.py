@@ -8,7 +8,7 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Neighbourhood(models.Model):
-    user = models.ForeignKey('Profile', null=True, blank=True, on_delete=models.CASCADE)
+    
     name=models.CharField(max_length=60, null=True)
     description=models.CharField(max_length=400, null=True)
     location=models.CharField(max_length=200, null=True)
