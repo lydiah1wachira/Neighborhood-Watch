@@ -17,7 +17,7 @@ def register_request(request):
 			login(request, user)
 			messages.success(request, "Registration successful." )
    
-			return redirect("login")
+			return redirect('login/')
 
 		messages.error(request, "Unsuccessful registration. Invalid information.")
   
@@ -35,7 +35,7 @@ def login_request(request):
 			if user is not None:
 				login(request, user)
 				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("index")
+				return redirect('index')
 			else:
 				messages.error(request,"Invalid username or password.")
 		else:
@@ -46,8 +46,9 @@ def login_request(request):
 def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
-	return redirect("index")
+	return redirect("login")
 
+@login_required
 def index(request):
     '''Index view function to display the index page and all of its data'''
     
