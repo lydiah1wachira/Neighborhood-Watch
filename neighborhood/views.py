@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse ,HttpResponseRedirect, Http404
 from .forms import NewUserForm
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login,authenticate
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm 
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -26,7 +27,7 @@ def register_request(request):
 
 def login_request(request):
 	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
+		form = AuthenticationForm(None, request.POST)
 		if form.is_valid():
 			username = form.cleaned_data.get('username')
 			password = form.cleaned_data.get('password')
@@ -40,7 +41,8 @@ def login_request(request):
 		else:
 			messages.error(request,"Invalid username or password.")
 	form = AuthenticationForm()
-	return render(request, "registration/login.html", context={"login_form":form})
+	return render(request=request, template_name="registration/login.html", context={"login_form":form})
+
 
 def index(request):
     '''Index view function to display the index page and all of its data'''

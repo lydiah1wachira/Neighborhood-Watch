@@ -39,7 +39,7 @@ cloudinary.config(
 # Application definition
 
 INSTALLED_APPS = [
-    'registration',
+  
     'bootstrap5',
     'neighborhood.apps.NeighborhoodConfig',
     'django.contrib.admin',
