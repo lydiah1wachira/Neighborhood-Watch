@@ -3,7 +3,7 @@ from django.http import HttpResponse ,HttpResponseRedirect, Http404
 from .forms import NewUserForm
 from django.contrib.auth import login,authenticate,logout
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm 
+from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
 
 
@@ -25,30 +25,30 @@ def register_request(request):
 	return render (request, "registration/register.html", context={"register_form":form})
 
 
-def login_request(request):
-	if request.method == "POST":
-		form = AuthenticationForm(None, request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect('index')
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
-	return render(request=request, template_name="registration/login.html", context={"login_form":form})
+def login(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            auth_login (request, user)
+            return redirect('create_profile')
+        else:
+            messages.info(request, 'Username Or Password is incorrect')    
+    
+    context = {}
+    return render(request, 'registration/login.html', context)
 
 def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("login")
 
-@login_required
+
+@login_required(login_url='login')
 def index(request):
     '''Index view function to display the index page and all of its data'''
     
