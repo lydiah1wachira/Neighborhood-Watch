@@ -52,7 +52,7 @@ def EditProfile(request,username):
     legend = 'Edit Profile'
     return render(request, 'profile.html', {'legend':legend, 'form':EditProfileForm})
 
-@login_required(login_url='register/login/')
+@login_required(login_url='login')
 def create_profile(request):
     title = "NHood"
     current_user = request.user
@@ -68,3 +68,9 @@ def create_profile(request):
     else:
         form = CreateProfileForm()
     return render(request, 'create_profile.html', {"form": CreateProfileForm, "title": title})     
+
+@login_required(login_url='login')
+def hood(request):
+    '''View function to display all the neighborhoods'''
+    neighbourhoods = Neighbourhood.objects.all()
+    return render(request, 'hood.html', {'neighbourhoods':neighbourhoods} )
