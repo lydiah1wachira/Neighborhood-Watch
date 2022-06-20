@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse ,HttpResponseRedirect, Http404
 from .forms import *
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -28,3 +28,43 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/register.html', {'form':form})
+
+@login_required
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
+
+@login_required
+def EditProfile(request,username):
+    user = get_object_or_404(User, username=username)
+    profile = Profile.objects.get(user = user)
+    form = EditProfileForm(instance=profile)
+    if request.method == "POST":
+        form = EditProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.user = user
+            data.hood = profile.hood
+            data.save()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        else:
+            form = EditProfileForm(instance=profile)
+    legend = 'Edit Profile'
+    return render(request, 'profile.html', {'legend':legend, 'form':EditProfileForm})
+
+@login_required(login_url='register/login/')
+def create_profile(request):
+    title = "NHood"
+    current_user = request.user
+    title = "Create Profile"
+    if request.method == 'POST':
+        form = CreateProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return HttpResponseRedirect('/')
+
+    else:
+        form = CreateProfileForm()
+    return render(request, 'create_profile.html', {"form": CreateProfileForm, "title": title})     
