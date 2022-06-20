@@ -42,13 +42,15 @@ def login(request):
     context = {}
     return render(request, 'registration/login.html', context)
 
+
+@login_required
 def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("login")
 
 
-@login_required(login_url='login')
+@login_required
 def index(request):
     '''Index view function to display the index page and all of its data'''
     
