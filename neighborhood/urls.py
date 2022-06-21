@@ -12,5 +12,7 @@ urlpatterns = [
     path('create_profile/',views.create_profile,name = 'create_profile'),
     path('hood/', views.hood, name = 'hood'),
     path('estate/<int:id>/', views.estate, name = 'each-hood'),
+    path('search/', views.search, name = 'search'),
+
        
 ]

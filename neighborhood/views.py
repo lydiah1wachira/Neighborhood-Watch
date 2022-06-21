@@ -62,7 +62,7 @@ def create_profile(request):
             profile = form.save()
             profile.user = current_user
             profile.save()
-        return redirect('index')
+        return redirect('profile')
 
     else:
         form = CreateProfileForm()
@@ -74,18 +74,25 @@ def hood(request):
     neighbourhoods = Neighbourhood.objects.all()
     return render(request, 'hood.html', {'neighbourhoods':neighbourhoods} )
 
-def bizz(request):
-    '''View function to display all the businesses in the area'''
-    
-    all_biz = Business.objects.all
-   
-    return render(request,'biz.html', {"all_biz":all_biz})
+
 
 @login_required(login_url='login')
 def estate(request, id):
     neighbourhoods = Neighbourhood.objects.get(id =id)
   
     hood = Neighbourhood.objects.get(id =id)
+    business = Business.objects.get(id=id)
 
-    context = {'hood': hood, 'neighbourhoods':neighbourhoods}
+    context = {'hood': hood, 'neighbourhoods':neighbourhoods, "business":business}
     return render(request, 'eachhood.html', context)
+
+def search(request):
+    try:
+        if 'business' in request.GET and request.GET['business']:
+            search_term = request.GET.get('business')
+            searched_business = Business.objects.get(name__icontains=search_term)
+            return render(request,'search.html',{'searched_business':searched_business})
+    except (ValueError,Business.DoesNotExist):
+        message = "Oops! We couldn't find the business you're looking for."
+        return render(request,'search.html',{'message':message})
+    return render(request,'search.html',{'message':message,'searched_business':searched_business})
