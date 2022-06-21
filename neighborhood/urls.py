@@ -15,6 +15,7 @@ urlpatterns = [
     path('hood/', views.hood, name = 'hood'),
     path('estate/<int:id>/', views.estate, name = 'each-hood'),
     path('search/', views.search, name = 'search'),
+   
 
        
 ]

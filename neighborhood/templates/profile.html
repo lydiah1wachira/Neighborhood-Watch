@@ -4,30 +4,24 @@
 {% load cloudinary %}
 
 {%block content%}
-<div class="card">
-    <div class="column_one">
-        <div class="text">
-            <h3>{{user.username}} </h3>
-            <div class="line"></div>
-            <p>{{user.bio}}
-            </p>
-            <i class="fas fa-home fa-lg"></i>
-            <i class="fas fa-envelope fa-lg"></i>
-            <i class="fas fa-phone fa-lg"></i>
+<div class="container">
+    <div class="card" style="margin-top:7%;">
+        <div class="column_two">
+            <img src="{{ user.profile.image.url }}"/>
         </div>
-        <div class="title">
-        <P>{{ user.bio }}</p>
+        <div class="column_one">
+            <div class="text">
+                <h3> username: {{user.username}} </h3>
+               
+            </div>
+            <div class="title">
+            <P> <strong>Bio: </strong>{{ user.bio }}</p>
+            </div>
         </div>
-    </div>
-    <div class="column_two">
-        <img src="{{ user.profile.image.url }}"/>
+        
     </div>
 </div>
 
-<form method="POST" enctype="multipart/form-data">
-    <h2 class="font-weight-bold mt-3" style="text-decoration: solid;color:white;">Profile Edit</h2>
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <button type="submit" class="btn btn-sm btn-outline-blue">Update</button>
-</form>
+
+
 {% endblock %}

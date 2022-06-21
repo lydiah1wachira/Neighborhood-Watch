@@ -29,7 +29,7 @@
     }
     
     .container-fluid {
-        background-color: rgb(34, 29, 29);
+        background-color: rgb(83, 76, 76);
     }
     
     #transparent {
@@ -40,44 +40,42 @@
         color: snow;
     }
 </style>
-<div id="video-carousel-example2" class="carousel slide carousel-fade" data-ride="carousel">
-    <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-            <div class="view  rgba-black-strong">
-                <video class="video-intro" autoplay loop muted>
-                            <source src="https://mdbootstrap.com/img/video/city.mp4" type="video/mp4" />
-                       </video>
-                <div class="mask">
-                    <div class="text-center">
-                        <div class="col-4 offset-4 ">
-                            <h1>Welcome to Hood Watch<i class="fas fa-home"></i></h1>
-                            
-                            <form class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2" role="search"  action="">
-                                <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Neighbourhood" name="username">
-                                <i class="fas fa-search" aria-hidden="true"></i>
-                            </form>
+<div class="container-fluid">
+    <div class="row">
+        <div id="video-carousel-example2" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="view  rgba-black-strong">
+                        <video class="video-intro" autoplay loop muted>
+                                    <source src="https://mdbootstrap.com/img/video/city.mp4" type="video/mp4" />
+                               </video>
+                        <div class="mask">
+                            <div class="text-center">
+                                <div class="col-4 offset-4 ">
+                                    <h1>Welcome to Hood Watch<i class="fas fa-home"></i></h1>
+                                    
+                                    <form class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2" role="search"  action="">
+                                        <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Neighbourhood" name="username">
+                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="#"><button type="button" class="btn btn-outline-info waves-effect" >Search</button></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="text-center">
-                        <a href="#"><button type="button" class="btn btn-outline-info waves-effect" >Search</button></a>
                     </div>
                 </div>
             </div>
-        </div>
+        
     </div>
-
-    <!-- Loop for neigbour hood images -->
-
-    <div class="container-fluid">
+    <div class="row">
         <div class="d-flex justify-content-start">
             <a href=" {% url 'index' %} ">
                 
                 <button type="button" class="btn btn-info">Home</button>
             </a>
-        </div>
-        <div class="row">
 
-            <!-- FORLOOP -->
             {% for i_item in neighbourhoods %}
             <div class="col-sm-4 my-5">
                 <div class="card" style="width: 24rem;" id="transparent">
@@ -95,128 +93,132 @@
                 </div>
             </div>
             {% endfor %}
-            <!-- ENDFOR -->
+        </div>
 
-            <!-- ========FOOTER=====-->
+    </div>
+    <footer class="page-footer font-small pink accent-4-color pt-4 w-100 ">
 
-            <!-- Footer -->
-            <footer class="page-footer font-small pink accent-4-color pt-4 w-100 ">
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left ">
 
-                <!-- Footer Links -->
-                <div class="container text-center text-md-left ">
+            <!-- Footer links -->
+            <div class="row text-center text-md-left mt-3 pb-3 ">
 
-                    <!-- Footer links -->
-                    <div class="row text-center text-md-left mt-3 pb-3 ">
+               
 
-                       
+                <hr class="w-100 clearfix d-md-none ">
 
-                        <hr class="w-100 clearfix d-md-none ">
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 ">
+                    <h6 class="text-uppercase mb-4 font-weight-bold " style="color:azure">The Hood</h6>
+                    <p>
+                        <a href="{% url 'EditProfile' request.user.username %}"style="color:azure">My Profile</a>
+                    </p>
+                    <p>
+                        <a href="#! " style="color:azure">Emergency Contacts</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'hood' %} "style="color:azure">Neighbourhoods</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'logout' %}"style="color:azure">Logout</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
 
-                        <!-- Grid column -->
-                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 ">
-                            <h6 class="text-uppercase mb-4 font-weight-bold " style="color:azure">The Hood</h6>
-                            <p>
-                                <a href="{% url 'EditProfile' request.user.username %}"style="color:azure">My Profile</a>
-                            </p>
-                            <p>
-                                <a href="#! " style="color:azure">Emergency Contacts</a>
-                            </p>
-                            <p>
-                                <a href="{% url 'hood' %} "style="color:azure">Neighbourhoods</a>
-                            </p>
-                            <p>
-                                <a href="{% url 'logout' %}"style="color:azure">Logout</a>
-                            </p>
-                        </div>
-                        <!-- Grid column -->
+                <hr class="w-100 clearfix d-md-none ">
 
-                        <hr class="w-100 clearfix d-md-none ">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3 ">
+                    <h6 class="text-uppercase mb-4 font-weight-bold ">Useful links</h6>
+                    <p>
+                        <a href="{% url 'hood' %}">Change Neighbourhood</a>
+                    </p>
+                    
+                </div>
 
-                        <!-- Grid column -->
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3 ">
-                            <h6 class="text-uppercase mb-4 font-weight-bold ">Useful links</h6>
-                            <p>
-                                <a href="{% url 'hood' %}">Change Neighbourhood</a>
-                            </p>
-                            
-                        </div>
+                <!-- Grid column -->
+                <hr class="w-100 clearfix d-md-none ">
 
-                        <!-- Grid column -->
-                        <hr class="w-100 clearfix d-md-none ">
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3 ">
+                    <h6 class="text-uppercase mb-4 font-weight-bold " style="color:azure"> Emergency Contacts</h6>
+                    <p>
+                        <i class="fas fa-home mr-3 " style="color:azure"></i> Kenya, NA 10012, KE</p>
+                    <p>
+                        <i class="fas fa-envelope mr-3 "style="color:azure"></i> info@gmail.com</p>
+                    <p>
+                        <i class="fas fa-ambulance mr-3 "style="color:azure"></i> +254 7 234 567 288</p>
+                    <p>
+                        <i class="fas fa-user-shield mr-3 "style="color:azure"></i> +254 7 234 567 89</p>
+                </div>
+                <!-- Grid column -->
 
-                        <!-- Grid column -->
-                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3 ">
-                            <h6 class="text-uppercase mb-4 font-weight-bold " style="color:azure"> Emergency Contacts</h6>
-                            <p>
-                                <i class="fas fa-home mr-3 " style="color:azure"></i> Kenya, NA 10012, KE</p>
-                            <p>
-                                <i class="fas fa-envelope mr-3 "style="color:azure"></i> info@gmail.com</p>
-                            <p>
-                                <i class="fas fa-ambulance mr-3 "style="color:azure"></i> +254 7 234 567 288</p>
-                            <p>
-                                <i class="fas fa-user-shield mr-3 "style="color:azure"></i> +254 7 234 567 89</p>
-                        </div>
-                        <!-- Grid column -->
+            </div>
+            <!-- Footer links -->
 
-                    </div>
-                    <!-- Footer links -->
+            <hr>
 
-                    <hr>
+            <!-- Grid row -->
+            <div class="row d-flex align-items-center ">
 
-                    <!-- Grid row -->
-                    <div class="row d-flex align-items-center ">
+                <!-- Grid column -->
+                <div class="col-md-7 col-lg-8 ">
 
-                        <!-- Grid column -->
-                        <div class="col-md-7 col-lg-8 ">
-
-                            <!--Copyright-->
-                            <p class="text-center text-md-left "style="color:azure">© 2022 Copyright:
-                                <a href="# " style="color:azure">
-                                    <strong> Lydiah Wachira</strong>
-                                </a>
-                            </p>
-
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-md-5 col-lg-4 ml-lg-0 ">
-
-                            <!-- Social buttons -->
-                            <div class="text-center text-md-right ">
-                                <ul class="list-unstyled list-inline ">
-                                    <li class="list-inline-item ">
-                                        <a class="btn-floating btn-sm rgba-white-slight mx-1 ">
-                                            <i class="fab fa-facebook-f "></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item ">
-                                        <a class="btn-floating btn-sm rgba-white-slight mx-1 ">
-                                            <i class="fab fa-twitter "></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item ">
-                                        <a class="btn-floating btn-sm rgba-white-slight mx-1 ">
-                                            <i class="fab fa-google-plus-g "></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item ">
-                                        <a class="btn-floating btn-sm rgba-white-slight mx-1 ">
-                                            <i class="fab fa-linkedin-in "></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <!-- Grid column -->
-
-                    </div>
-                    <!-- Grid row -->
+                    <!--Copyright-->
+                    <p class="text-center text-md-left "style="color:azure">© 2022 Copyright:
+                        <a href="# " style="color:azure">
+                            <strong> Lydiah Wachira</strong>
+                        </a>
+                    </p>
 
                 </div>
-                <!-- Footer Links -->
+                <!-- Grid column -->
 
-            </footer>
+                <!-- Grid column -->
+                <div class="col-md-5 col-lg-4 ml-lg-0 ">
+
+                    <!-- Social buttons -->
+                    <div class="text-center text-md-right ">
+                        <ul class="list-unstyled list-inline ">
+                            <li class="list-inline-item ">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1 ">
+                                    <i class="fab fa-facebook-f "></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item ">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1 ">
+                                    <i class="fab fa-twitter "></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item ">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1 ">
+                                    <i class="fab fa-google-plus-g "></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item ">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1 ">
+                                    <i class="fab fa-linkedin-in "></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+    </footer>
+</div>
+
+    <!-- Loop for neigbour hood images -->
+
+    
+            
             <!-- Footer -->
             {% endblock %}

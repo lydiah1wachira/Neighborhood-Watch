@@ -62,7 +62,7 @@ def create_profile(request):
             profile = form.save()
             profile.user = current_user
             profile.save()
-        return redirect('profile')
+        return redirect('hood')
 
     else:
         form = CreateProfileForm()
@@ -96,3 +96,10 @@ def search(request):
         message = "Oops! We couldn't find the business you're looking for."
         return render(request,'search.html',{'message':message})
     return render(request,'search.html',{'message':message,'searched_business':searched_business})
+
+
+
+        
+       
+     
+    
