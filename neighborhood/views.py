@@ -54,16 +54,15 @@ def EditProfile(request,username):
 
 @login_required(login_url='login')
 def create_profile(request):
-    title = "NHood"
     current_user = request.user
     title = "Create Profile"
     if request.method == 'POST':
-        form = CreateProfileForm(request.POST, request.FILES)
+        form = CreateProfileForm(request.POST, instance=request.user.profile)
         if form.is_valid():
-            profile = form.save(commit=False)
+            profile = form.save()
             profile.user = current_user
             profile.save()
-        return HttpResponseRedirect('/')
+        return redirect('index')
 
     else:
         form = CreateProfileForm()
@@ -74,3 +73,19 @@ def hood(request):
     '''View function to display all the neighborhoods'''
     neighbourhoods = Neighbourhood.objects.all()
     return render(request, 'hood.html', {'neighbourhoods':neighbourhoods} )
+
+def bizz(request):
+    '''View function to display all the businesses in the area'''
+    
+    all_biz = Business.objects.all
+   
+    return render(request,'biz.html', {"all_biz":all_biz})
+
+@login_required(login_url='login')
+def singlehood(request, id):
+    neighbourhoods = Neighbourhood.objects.get(id =id)
+  
+    hood = Neighbourhood.objects.get(id =id)
+
+    context = {'hood': hood, 'neighbourhoods':neighbourhoods}
+    return render(request, 'eachhood.html', context)
