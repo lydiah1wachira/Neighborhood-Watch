@@ -1,4 +1,22 @@
 {% extends 'base.html' %}
-{%block content%} 
-<h1>HOOD WATCH</h1>
+{% load bootstrap5 %} 
+{% load static %}
+{%block content%}
+    <div class="container-fluid">
+    <div class="row">
+      <div class="bg-image">
+        <img src="../static/neighborhood/images/bbgg.jpeg" />
+      </div>
+
+      <div class="bg-text">
+        <h1 class="text1">Welcome to HoodWatch</h1>
+        <p>Join a Neighborhood and be kept in the loop</p>
+        <div class="get-started">
+          <a href="{% url 'create_profile' %}">
+            <button class="btn btn-info">Get Started</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
 {% endblock %}
