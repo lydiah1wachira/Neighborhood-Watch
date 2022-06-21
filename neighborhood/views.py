@@ -82,7 +82,7 @@ def bizz(request):
     return render(request,'biz.html', {"all_biz":all_biz})
 
 @login_required(login_url='login')
-def singlehood(request, id):
+def estate(request, id):
     neighbourhoods = Neighbourhood.objects.get(id =id)
   
     hood = Neighbourhood.objects.get(id =id)
