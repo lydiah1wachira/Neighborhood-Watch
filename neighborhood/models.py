@@ -45,3 +45,21 @@ class Profile(models.Model):
     
     def __str__(self):
         return f'{self.user.username} profile'
+    
+
+class Business(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    name=models.CharField(max_length=60, null=True)
+    description=models.CharField(max_length=400, null=True)
+    neighborhood=models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
+    email=models.EmailField()
+    image =CloudinaryField(default='default.jpg')
+
+    def __str__(self):
+        return self.name
+
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
