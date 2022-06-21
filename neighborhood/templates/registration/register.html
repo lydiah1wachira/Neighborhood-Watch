@@ -5,19 +5,23 @@
 
 {% block content %}
 
-<div class="container bg-light" style="height: 90vh;">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 welcome" style="margin-top: 7%;">
-            <img class="img-responsive" src="{% static 'img/Welcome+To+The+Neighborhood.png' %}" alt="" height="300">
+        <div class="col-md-6">
+            <img src="../../../static/neighborhood/images/signup.jpg">
         </div>
-        <div class="col-md-6 here">
-            <form action="" novalidate method="post">
-                {% csrf_token %}
-                {{form | crispy }}
-                <button type="submit" class="btn btn-sm btn-outline-primary">REGISTER</button>
-            </form>
-            <p>Already A Member? Log In here</p>
-            <a class="btn btn-sm btn-outline-primary" href="{% url 'login' %}">Login Here</a>
+       
+        <div class="col-md-6">
+            <div class="register">
+                <form action="" novalidate method="post">
+                    {% csrf_token %}
+                    {{form | crispy }}
+                    <button type="submit" class="btn btn-sm btn-outline-primary">REGISTER</button>
+                </form>
+                <p>Already A Member? Log In here</p>
+                <a class="btn btn-sm btn-outline-primary" href="{% url 'login' %}">Login Here</a>
+            </div>
+           
         </div>
     </div>
 </div>

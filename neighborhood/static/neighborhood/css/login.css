@@ -1,0 +1,19 @@
+.loginbg{
+    padding-left: 4%;
+    margin-top: 7%;
+}
+
+.formbox{
+    background-color: rgb(156, 204, 231);
+    width:50%;
+    padding: 6%;
+}
+
+.register{
+    margin-top: 20%;
+    padding-top: 5%;
+    padding-left:5%;
+    padding-bottom: 3%;
+    background-color: rgba(127, 193, 209, 0.3);
+    width:60%;
+}

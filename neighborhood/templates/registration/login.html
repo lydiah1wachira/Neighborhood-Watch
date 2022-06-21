@@ -4,17 +4,24 @@
 
 {% block content %}
 
-<div class="container bg-light" style="height: 90vh;">
+<div class="container-fluid">
     <div class="row">
+        <div class="col-md-6"  >
+           <img src="../../../static/neighborhood/images/loginbg2.png" class="loginbg">
+        </div>
         
-        <div class="col-md-6 here" style="margin-top: 7%;">
-            <form action="" novalidate method="post" >
-                {% csrf_token %}
-                {{form | crispy }}
-                <button type="submit" class="btn btn-sm btn-outline-primary">LOG IN</button>
-            </form>
-            <p>Not A Member? Register Today</p>
-            <a class="btn btn-sm btn-outline-primary" href="{% url 'signup' %}">REGISTER</a>
+        <div class="col-md-6 " style="margin-top: 7%;">
+            <div class="formbox">
+                <form action="" novalidate method="post" >
+                    <img src="../../../static/neighborhood/images/loginform.png">
+                    {% csrf_token %}
+                    {{form | crispy }}
+                    <button type="submit" class="btn btn-sm btn-outline-primary">LOG IN</button>
+                </form>
+                <p>Not A Member? Register Today</p>
+                <a  href="{% url 'signup' %}">sign up</a>
+            </div>
+            
         </div>
     </div>
 </div>
